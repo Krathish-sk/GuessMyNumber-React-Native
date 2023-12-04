@@ -1,5 +1,7 @@
 import { View, StyleSheet, Alert } from "react-native";
 import { useEffect, useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
+
 import Title from "../components/ui/Title";
 import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButton from "../components/ui/PrimaryButton";
@@ -60,16 +62,17 @@ export default function GameScreen({ userNumber, onGameOver }) {
         <InfoText style={styles.infoText}>Hiegher or Lower</InfoText>
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
-            <PrimaryButton
-              onPress={nextGuessHandler.bind(this, "greater")}
-              text={"+"}
-            />
+            <PrimaryButton onPress={nextGuessHandler.bind(this, "greater")}>
+              <Ionicons name="md-add" size={24} color="white" />
+            </PrimaryButton>
           </View>
           <View style={styles.buttonContainer}>
             <PrimaryButton
               onPress={nextGuessHandler.bind(this, "lower")}
               text={"-"}
-            />
+            >
+              <Ionicons color="white" name="md-remove" size={24} />
+            </PrimaryButton>
           </View>
         </View>
       </Card>

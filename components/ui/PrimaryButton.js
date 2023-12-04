@@ -1,7 +1,7 @@
 import { View, Text, Pressable, StyleSheet, Touchable } from "react-native";
 import Colors from "../../constants/colors";
 
-export default function PrimaryButton({ text, onPress }) {
+export default function PrimaryButton({ children, onPress }) {
   return (
     <View style={styles.buttonOuterContainer}>
       <Pressable
@@ -13,7 +13,7 @@ export default function PrimaryButton({ text, onPress }) {
             : styles.buttonInnerContainer
         }
       >
-        <Text style={styles.buttonText}>{text}</Text>
+        <Text style={styles.buttonText}>{children}</Text>
       </Pressable>
     </View>
   );

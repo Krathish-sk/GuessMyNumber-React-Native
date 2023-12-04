@@ -44,10 +44,10 @@ export default function StartGameScreen({ onPickedNumber }) {
         />
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
-            <PrimaryButton onPress={resetInputHandler} text={"Reset"} />
+            <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
           </View>
           <View style={styles.buttonContainer}>
-            <PrimaryButton onPress={confirmInputHandler} text={"Confirm"} />
+            <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
           </View>
         </View>
       </Card>
