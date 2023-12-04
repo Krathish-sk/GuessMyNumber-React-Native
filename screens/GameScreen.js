@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Alert } from "react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Title from "../components/ui/Title";
 import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButton from "../components/ui/PrimaryButton";
@@ -15,10 +15,16 @@ function genreateRandomNumber(min, max, exclude) {
 let minBoundry = 1;
 let maxBoundry = 100;
 
-export default function GameScreen({ userNumber }) {
-  const initialGuess = genreateRandomNumber(minBoundry, maxBoundry, userNumber);
+export default function GameScreen({ userNumber, onGameOver }) {
+  const initialGuess = genreateRandomNumber(1, 100, userNumber);
 
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
+
+  useEffect(() => {
+    if (currentGuess === userNumber) {
+      onGameOver();
+    }
+  }, [userNumber, currentGuess, onGameOver]);
 
   function nextGuessHandler(direction) {
     if (
