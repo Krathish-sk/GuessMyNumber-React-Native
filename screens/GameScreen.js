@@ -7,6 +7,7 @@ import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import Card from "../components/ui/Card";
 import InfoText from "../components/ui/InfoText";
+import GuessLogItem from "../components/game/GuessLogItem";
 
 function genreateRandomNumber(min, max, exclude) {
   const num = Math.floor(Math.random() * (max - min)) + min;
@@ -27,7 +28,7 @@ export default function GameScreen({ userNumber, onGameOver }) {
 
   useEffect(() => {
     if (currentGuess === userNumber) {
-      onGameOver();
+      onGameOver(guessRounds.length);
     }
   }, [userNumber, currentGuess, onGameOver]);
 
@@ -61,6 +62,8 @@ export default function GameScreen({ userNumber, onGameOver }) {
     maxBoundry = 100;
   }, []);
 
+  const guessRoundsListLength = guessRounds.length;
+
   return (
     <View style={styles.screen}>
       <Title>Opponent's Guess</Title>
@@ -80,11 +83,16 @@ export default function GameScreen({ userNumber, onGameOver }) {
           </View>
         </View>
       </Card>
-      <View>
+      <View style={styles.listContainer}>
         <FlatList
           data={guessRounds}
           keyExtractor={(item) => item}
-          renderItem={(itemData) => <Text>{itemData.item}</Text>}
+          renderItem={(itemData) => (
+            <GuessLogItem
+              roundNumber={guessRoundsListLength - itemData.index}
+              guess={itemData.item}
+            />
+          )}
         />
       </View>
     </View>
@@ -102,5 +110,9 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
+  },
+  listContainer: {
+    flex: 1,
+    padding: 16,
   },
 });

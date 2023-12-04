@@ -1,9 +1,8 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import { StyleSheet, ImageBackground, SafeAreaView } from "react-native";
+import { StyleSheet, ImageBackground, SafeAreaView, Text } from "react-native";
 import { useFonts } from "expo-font";
-import AppLoading from "expo-app-loading";
 
 import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
@@ -27,8 +26,9 @@ export default function App() {
     setGameIsOver(false);
   }
 
-  function gameOverHandler() {
+  function gameOverHandler(numberOfRounds) {
     setGameIsOver(true);
+    setGuessRounds(numberOfRounds);
   }
 
   function startNewGameHandler() {
@@ -37,7 +37,11 @@ export default function App() {
   }
 
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return (
+      <Text style={{ textAlign: "center", justifyContent: "center", flex: 1 }}>
+        Loading...
+      </Text>
+    );
   }
 
   if (userNumber) {
