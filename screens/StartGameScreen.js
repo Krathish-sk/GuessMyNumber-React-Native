@@ -11,8 +11,8 @@ export default function StartGameScreen() {
         autoCapitalize="none"
         autoCorrect={false}
       />
-      <PrimaryButton text={"Reset"} color={"white"} />
-      <PrimaryButton text={"Confirm"} color={"white"} />
+      <PrimaryButton text={"Reset"} />
+      <PrimaryButton text={"Confirm"} />
     </View>
   );
 }
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     padding: 16,
     marginTop: 100,
     marginHorizontal: 24,
-    backgroundColor: "#72063c",
+    backgroundColor: "#4e0329",
     borderRadius: 6,
     elevation: 4,
     shadowColor: "black",
