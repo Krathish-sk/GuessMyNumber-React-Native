@@ -1,4 +1,4 @@
-import { View, StyleSheet, Alert } from "react-native";
+import { View, StyleSheet, Alert, Text, FlatList } from "react-native";
 import { useEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -23,6 +23,7 @@ export default function GameScreen({ userNumber, onGameOver }) {
   const initialGuess = genreateRandomNumber(1, 100, userNumber);
 
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
+  const [guessRounds, setGuessRounds] = useState([initialGuess]);
 
   useEffect(() => {
     if (currentGuess === userNumber) {
@@ -52,6 +53,7 @@ export default function GameScreen({ userNumber, onGameOver }) {
       currentGuess
     );
     setCurrentGuess(newNumber);
+    setGuessRounds((prev) => [newNumber, ...prev]);
   }
 
   useEffect(() => {
@@ -72,15 +74,19 @@ export default function GameScreen({ userNumber, onGameOver }) {
             </PrimaryButton>
           </View>
           <View style={styles.buttonContainer}>
-            <PrimaryButton
-              onPress={nextGuessHandler.bind(this, "lower")}
-              text={"-"}
-            >
+            <PrimaryButton onPress={nextGuessHandler.bind(this, "lower")}>
               <Ionicons color="white" name="md-remove" size={24} />
             </PrimaryButton>
           </View>
         </View>
       </Card>
+      <View>
+        <FlatList
+          data={guessRounds}
+          keyExtractor={(item) => item}
+          renderItem={(itemData) => <Text>{itemData.item}</Text>}
+        />
+      </View>
     </View>
   );
 }
