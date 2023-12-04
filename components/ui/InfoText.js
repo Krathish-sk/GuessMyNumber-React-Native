@@ -7,6 +7,7 @@ export default function InfoText({ children, style }) {
 
 const styles = StyleSheet.create({
   infoText: {
+    fontFamily: "open-sans",
     fontSize: 24,
     color: Colors.accent500,
     width: "100%",
